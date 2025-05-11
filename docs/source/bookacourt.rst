@@ -5,113 +5,58 @@ Book a Court Page Documentation
 
 Usage
 -----
-The **Book a Court** page allows users to reserve a sports court by providing personal details and scheduling information.
+The **Book a Court** page enables users to reserve a sports court by entering their personal details, selecting a date & time, and choosing a location.  
 
 Typical workflow:
 
-#. Navigate via the main menu to **Book a Court**.
-#. Fill in personal information (name, email).
-#. Select country code and enter a phone number.
-#. Choose match date and time using date/time pickers.
-#. Select a court location from the dropdown.
-#. Click **Book Court** to submit the form.
-
-Example form submission:
-
-.. code-block:: http
-
-   POST /reserve-court HTTP/1.1
-   Host: example.com
-   Content-Type: application/x-www-form-urlencoded
-
-   name=Jane+Doe&email=jane%40example.com \
-   &country_code=%2B44&phone_number=7123456789 \
-   &match_date=2025-05-10&match_time=18%3A30&location=stadium_2
+#. User navigates to **Book a Court** via the main menu.  
+#. User fills in **Name**, **Email**, and selects a **Country Code** + enters **Phone Number**.  
+#. User picks a **Match Date**; the **Match Time** dropdown is then populated with available slots.  
+#. User selects a **Location** from the courts list.  
+#. User clicks **Book Court**; a modal confirms success or shows errors.  
 
 Maintenance
 -----------
-This page is implemented with static HTML, CSS for styling, and JavaScript for interactivity.
+This page is composed of static HTML, CSS for styling, and JavaScript for dynamic behaviour.
 
-- **HTML** (`Book_a_court.html`):
-  - Defines semantic structure (`<header>`, `<nav>`, `<form>`, modal overlay, `<footer>`).
-  - Uses HTML5 form validation via `required` attributes.
-- **CSS** (`Book_a_court.css`):
-  - Styles layout, form elements, navigation bar, custom phone-code dropdown, and modal.
-  - Responsive design via `%` widths and flexbox.
-- **JavaScript** (`app.js`):
-  - Drives country-code dropdown logic.
-  - Synchronises hidden input `country_code`.
-  - Toggles modal overlay to show booking confirmation.
+- **HTML** (`Book_a_court.html`):  
+  - Semantic structure: `<header>`, `<nav>`, `<main>`, `<form>`, modal overlay, `<footer>`.  
+  - Relies on HTML5 form validation via `required` attributes.  
+- **CSS** (`Book_a_court.css`):  
+  - Responsive layout using flexbox and percentage widths.  
+  - Themed styling: gradient backgrounds, centered container, styled form controls, custom dropdown, modal.  
+- **JavaScript** (`book_a_court.js`):  
+  - Wrapped in an IIFE on `DOMContentLoaded` to avoid global scope pollution.  
+  - **Dynamic court list**: fetches available courts on load and populates the **Location** `<select>`.  
+  - **Time slot loading**: on date or location change, queries  
+    ``GET /api/book/blocked?court_id={id}&booking_date={YYYY-MM-DD}``  
+    to filter out blocked times and repopulates the **Match Time** dropdown.  
+  - **Form submission**: intercepts submit, sends data via `fetch`, and shows modal with server response.  
+  - **Zoom fallback**: applies `document.body.style.zoom = "140%"`, with CSS transform fallback for browsers without `zoom` support.
 
 **Dependencies**:
 
-- Flag icons loaded via CDN in image tags.
-- Modern browser support for HTML5 and flexbox.
+- Browser must support HTML5, Fetch API, and Flexbox.  
+- Flag images and logo loaded from `assets/flags/*.png` and `assets/images/logo.png`.  
 
 **Build & Deployment**:
 
-No build step required. Deploy by serving static files from any web server (NGINX, GitHub Pages, etc.).
-
-Component Breakdown
-~~~~~~~~~~~~~~~~~~~
-- **header & nav**  
-  Navigation links to all app pages.
-- **form.group**  
-  Grouped inputs for capturing user and match details.
-- **.phone-group & .custom-dropdown**  
-  Flex layout for phone input and country-code selector.
-- **.modal-overlay & .modal-box**  
-  Hidden overlay and centered box for booking confirmation.
+No build tool required. Deploy by hosting these static files (HTML, CSS, JS, assets) on any web server (e.g., NGINX, GitHub Pages).
 
 Comments
 --------
-Code Comments
-~~~~~~~~~~~~~
-- Semantic HTML tags improve accessibility (e.g., `<nav>`, `<main>`).
-- CSS class names follow a clear, BEM-inspired convention (e.g., `.form-group`, `.phone-group`).
-- `data-code` and `data-flag` attributes in dropdown items drive JS logic.
-
 Implementation Comments
 ~~~~~~~~~~~~~~~~~~~~~~~
 - **Accessibility**:  
-  Current CSS-only dropdown `:hover` show/hide lacks keyboard support.  
-  → Recommend adding `aria-expanded` on the button and JS key event handling.
+  - The custom country dropdown is CSS-only on `:hover`; it lacks keyboard navigation and ARIA attributes.  
+  - Recommend adding `role="listbox"`/`role="option"` and managing `aria-expanded`/`aria-activedescendant`.  
+- **Error handling**:  
+  - Current code logs fetch errors to console; consider displaying a user-friendly message in the modal.  
 - **Performance**:  
-  Modal markup is always present; consider injecting via JS to reduce initial DOM size.
-- **Validation**:  
-  Client-side HTML5 checks are useful but server must validate all fields and return JSON errors.
+  - Modal markup is always loaded; could be injected on demand to reduce initial DOM size.  
+- **Time zone**:  
+  - Date & time inputs assume user locale; server should validate and normalize to UTC.
 
 Interface Comments
 ~~~~~~~~~~~~~~~~~~~
-:URL: `/reserve-court`  (method: POST)  
-:Content-Type: `application/x-www-form-urlencoded`
-
-+----------------+-----------------------------------------------+
-| Parameter      | Description                                   |
-+================+===============================================+
-| `name`         | User’s full name (string, required)           |
-+----------------+-----------------------------------------------+
-| `email`        | User’s email address (string, required)       |
-+----------------+-----------------------------------------------+
-| `country_code` | International dialing code (string, hidden)    |
-+----------------+-----------------------------------------------+
-| `phone_number` | Local phone number (string, required)         |
-+----------------+-----------------------------------------------+
-| `match_date`   | Desired date (YYYY-MM-DD, required)           |
-+----------------+-----------------------------------------------+
-| `match_time`   | Desired time (HH:MM, required)                |
-+----------------+-----------------------------------------------+
-| `location`     | Court identifier (e.g., `stadium_1`, required)|
-+----------------+-----------------------------------------------+
-
-Version Control
----------------
-- **Branching**:  
-  Feature branches named `feature/book-court`.
-- **Issue Tracking**:  
-  Linked to GitHub issues (e.g., Issue #45).
-- **Pull Requests**:  
-  Titles follow convention `feat(booking): add court reservation page (#45)`.
-- **Release Tagging**:  
-  UI updates tagged as `v1.0.0-booking`.
-
+Form POST endpoint:  
