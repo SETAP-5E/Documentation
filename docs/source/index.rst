@@ -22,4 +22,5 @@ Contents
    api
    signup
    signin
+   home
    bookacourt
