@@ -21,6 +21,6 @@ Contents
    usage
    api
    signup
-   signin
+   login
    home
    bookacourt
