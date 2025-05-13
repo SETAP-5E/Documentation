@@ -24,3 +24,4 @@ Contents
    login
    home
    bookacourt
+   friends
