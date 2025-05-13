@@ -24,4 +24,5 @@ Contents
    login
    home
    bookacourt
+   mybookings
    friends
