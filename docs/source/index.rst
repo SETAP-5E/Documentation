@@ -28,3 +28,4 @@ Contents
    historymatches
    matchmaking
    friends
+   profile
