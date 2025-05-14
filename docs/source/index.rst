@@ -26,4 +26,5 @@ Contents
    bookacourt
    mybookings
    historymatches
+   matchmaking
    friends
