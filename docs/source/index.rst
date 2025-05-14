@@ -25,4 +25,5 @@ Contents
    home
    bookacourt
    mybookings
+   historymatches
    friends
