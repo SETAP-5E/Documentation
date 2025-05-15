@@ -1,6 +1,6 @@
 .. _friends-page:
 
-Friends Page Documentation
+Friends Page
 ==========================
 
 Usage
