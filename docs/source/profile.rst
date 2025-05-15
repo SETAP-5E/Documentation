@@ -1,6 +1,6 @@
 .. _profile-page:
 
-Profile Page Documentation
+Profile Page
 ==========================
 
 Usage
