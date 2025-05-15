@@ -16,6 +16,7 @@ Contents
 .. toctree::
 
    usage
+   backend
    api
    signup
    login
