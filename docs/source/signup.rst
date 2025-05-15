@@ -1,6 +1,6 @@
 .. _register-page:
 
-Signup Page Documentation
+Signup Page
 ===========================
 
 Usage
