@@ -1,6 +1,6 @@
 .. _login-page:
 
-Login Page Documentation
+Login Page
 ========================
 
 Usage
