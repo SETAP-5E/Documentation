@@ -77,6 +77,6 @@ Version Control
 - **Branching**  
   Use feature branches prefixed `feature/ui-home-page`.  
 - **Issue Tracking**  
-  Reference GitHub Issue IDs in commits and PR titles (e.g., `#101`).  
+  Reference GitHub Issue IDs in commits.  
 - **Pull Requests**  
   Title convention:  
