@@ -1,6 +1,6 @@
 .. _backend:
 
-Backend Code Documentation
+Backend
 ==========================
 
 This document describes the server-side architecture, the database module, route definitions, middleware, and implementation notes for the MatchPoint backend.
