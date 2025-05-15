@@ -1,6 +1,6 @@
 .. _view-bookings:
 
-View Bookings Page Documentation
+View / My Bookings Page
 ================================
 
 Usage
