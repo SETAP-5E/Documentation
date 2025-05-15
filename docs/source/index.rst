@@ -1,13 +1,10 @@
-Welcome to Lumache's documentation!
+Welcome to MatchPoints documentation!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**MatchPoint** (/mætʃˌpɔɪnt/) is a web-based platform for sports enthusiasts that lets you reserve courts, manage your profile, connect with friends, review match history, and automatically pair up opponents.  
+It exposes a clean REST API and an intuitive user interface, backed by a MySQL database.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+Check out the :doc:`usage` section for full walkthroughs of each workflow, and see :ref
 
 .. note::
 
