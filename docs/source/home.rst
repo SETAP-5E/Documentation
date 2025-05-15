@@ -1,6 +1,6 @@
 .. _home-page:
 
-Home Page Documentation
+Home / Main Page
 =======================
 
 Usage
