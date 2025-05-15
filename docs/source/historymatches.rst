@@ -1,6 +1,6 @@
 .. _match-history:
 
-Match History Page Documentation
+Match History Page
 ================================
 
 Usage
