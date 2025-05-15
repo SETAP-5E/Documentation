@@ -23,8 +23,8 @@ Example request (via JavaScript `fetch`):
    Content-Type: application/json
 
    {
-     "full_name": "Jane Doe",
-     "email": "jane@example.com",
+     "full_name": "Lemich M",
+     "email": "lemich@example.com",
      "password": "••••••••"
    }
 
