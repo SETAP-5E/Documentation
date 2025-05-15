@@ -1,6 +1,6 @@
 .. _book-a-court:
 
-Book a Court Page Documentation
+Book a Court Page
 ================================
 
 Usage
