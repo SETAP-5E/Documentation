@@ -1,6 +1,6 @@
 .. _matchmaking-page:
 
-Matchmaking Page Documentation
+Matchmaking Page
 ================================
 
 Usage
